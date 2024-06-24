@@ -10,14 +10,14 @@
     <h1>Welcome</h1>
     <tr>
         <td>
-            <label>Plcae your bet: </label>
+            <label>Place your bet: </label>
             <input type="text" id="bet_value">
             <button id="submit">bet</button>
         </td>
     </tr>
     <br>
 
-    <tr>
+    <div id="switch" style="display: none;">
         <td>
             Switch Cards:
         </td>
@@ -27,8 +27,10 @@
             <input type="checkbox" id="card3"> 3
             <input type="checkbox" id="card4"> 4
             <input type="checkbox" id="card5"> 5
+            <button id="switchButton">switch</button>
         </td>
-    </tr>
+    </div>
+
 
 
     <script src="main.js"></script>
