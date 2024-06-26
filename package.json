@@ -1,0 +1,23 @@
+{
+  "name": "5pk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrestonKu0813/5pk.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrestonKu0813/5pk/issues"
+  },
+  "homepage": "https://github.com/PrestonKu0813/5pk#readme",
+  "dependencies": {
+    "prompt": "^1.3.0",
+    "readline-sync": "^1.4.10"
+  }
+}
