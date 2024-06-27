@@ -1,80 +1,55 @@
-var readline = require('readline-sync');
-const Dealer = require('./dealer.js');
-const Pricing = require('./pricing.js');
+const RegularGame = require('./regularGame.js');
 const Transition = require('./transition.js');
 const DoubleGame = require('./doubleGame.js');
+const Pricing = require('./pricing.js')
+const ENUM_DOUBLE = require('./enum.js')
 
-let betAmount = 0;
+var betAmount = 0;
 var bettingOdds = 0;
 var points = 0;
 var totalPoints = 0;
-let currentHands = [];
+var currentHands = [];
 
-function wager() {
-    const dealer = new Dealer();
-    const transition = new Transition();
-
-    betAmount = transition.wager();
-
-    currentHands = dealer.deal('reg');
-    console.log(dealer.convert(currentHands));
-}
-
-function switchCards() {
-    var idString;
-    var ids = [];
-
-
-
-    while (true) {
-        idString = readline.question("which cards do you want to switch (input in the format of 1,2,5 with no spaces): ");
-        ids = idString.split(",").map((x) => Number(x));
-
-        const inRange = (id) => (id > 5 || id < 1 || !(Number.isInteger(id)));
-        if (ids.some(inRange)) {
-            console.log("format not correct")
-            continue;
-        }
-        break;
-    }
-
-    const dealer = new Dealer();
-    currentHands = dealer.switch(currentHands, ids);
-    console.log(dealer.convert(currentHands));
-
-    const pricing = new Pricing();
-    bettingOdds = pricing.prices(currentHands);
-    points = betAmount * bettingOdds;
-}
+const regularGame = new RegularGame();
+const doubleGame = new DoubleGame();
 
 while (true) {
-    const dealer = new Dealer();
-    dealer.shuffle('reg');
-    dealer.shuffle('double')
+    var result;
+    betAmount = Transition.wager();
+    currentHands = regularGame.wager();
+    currentHands = regularGame.switchCards(currentHands);
 
-    wager();
-    switchCards();
+    bettingOdds = Pricing.prices(currentHands);
+    points = betAmount * bettingOdds;
 
-    const transition = new Transition();
-    if (transition.regularGame(betAmount, bettingOdds)) {
-        if (transition.doubleGame()) {
-
-            const doubleGame = new DoubleGame();
-            if (doubleGame.doubleGame()) {
-                totalPoints += (2 * points);
+    if (Transition.regularGame(betAmount, bettingOdds)) {
+        if (Transition.doubleGame()) {
+            while (true) {
+                result = doubleGame.doubleGame();
+                if (result == ENUM_DOUBLE.WIN) {
+                    console.log("you won!")
+                    totalPoints += (2 * points);
+                    break;
+                } else if (result == ENUM_DOUBLE.DRAW) {
+                    console.log("it's a draw... starting a new double game...")
+                    continue;
+                } else {
+                    console.log("you lost...");
+                    break;
+                }
             }
         } else {
             totalPoints += points;
         }
     }
 
-    if (transition.newGame(totalPoints)) {
+    if (Transition.newGame(totalPoints)) {
         betAmount = 0;
         bettingOdds = 0;
         points = 0;
         continue;
     } else {
-        console.log("you won a total of: " + totalPoints)
+        console.log("you won a total of: " + totalPoints + " points")
         break;
     }
 }

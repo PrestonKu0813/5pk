@@ -1,7 +1,7 @@
 var readline = require('readline-sync');
 
 class Transition {
-    wager() {
+    static wager() {
         var betAmount;
         betAmount = readline.question("place your bet: ");
 
@@ -18,9 +18,27 @@ class Transition {
         }
     }
 
-    doubleGame() {
+    static switchCards() {
+        var idString = [];
+        var ids = [];
+
+        while (true) {
+            idString = readline.question("which cards do you want to switch (input in the format of 1,2,5 with no spaces): ");
+            ids = idString.split(",").map((x) => Number(x));
+
+            const inRange = (id) => (id > 5 || id < 1 || !(Number.isInteger(id)));
+            if (ids.some(inRange)) {
+                console.log("format not correct")
+                continue;
+            }
+            break;
+        }
+        return ids;
+    }
+
+    static doubleGame() {
         var response;
-        response = readline.question("do you want to enter doubleGame (y/n): ")
+        response = readline.question("do you want to enter double game (y/n): ")
         if (response == "y") {
             console.log("entering...");
             return true;
@@ -32,7 +50,21 @@ class Transition {
         }
     }
 
-    newGame(totalPoints) {
+    static doubleGameCheck() {
+        var response;
+        while (true) {
+            response = readline.question("which cards do you want to choose: "); // 1-4
+            if (response > 4 || response < 1 || !(Number.isInteger(Number(response)))) {
+                console.log("format not correct")
+                continue;
+            } else {
+                break;
+            }
+        }
+        return Number(response);
+    }
+
+    static newGame(totalPoints) {
         var response;
 
         console.log("you currently have: " + totalPoints + " points")
@@ -49,7 +81,7 @@ class Transition {
         }
     }
 
-    regularGame(betAmount, bettingOdds) {
+    static regularGame(betAmount, bettingOdds) {
         var points = betAmount * bettingOdds;
 
         if (bettingOdds == 0) {

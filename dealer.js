@@ -1,7 +1,6 @@
 // 顯示 [ '♠', '♥', '♦', '♣', 'Joker' ]
 const suitsArray = ['\u2660', '\u2665', '\u2666', '\u2663'];
-var discardReg = [];
-var discardDouble = [];
+var discard = [];
 
 class Dealer {
     convert(arr) {
@@ -29,37 +28,19 @@ class Dealer {
         }
         return convertedArray
     }
-    deal(type) { //有沒有更好的寫法?
+    deal() {
         var newCard;
         var counter = 0;
         var currentHands = []
 
         while (counter < 5) {
             newCard = Math.floor(((Math.random() * 54))); //0-53
-            const discard = type == 'reg' ? discardReg : discardDouble;
-
             if (currentHands.includes(newCard) || discard.includes(newCard)) {
                 continue;
             } else {
                 currentHands.push(newCard);
                 counter++;
             }
-
-            // if (type == 'reg') {
-            //     if (currentHands.includes(newCard) || discardReg.includes(newCard)) {
-            //         continue;
-            //     } else {
-            //         currentHands.push(newCard);
-            //         counter++;
-            //     }
-            // } else if (type == 'double') {
-            //     if (currentHands.includes(newCard) || discardDouble.includes(newCard)) {
-            //         continue;
-            //     } else {
-            //         currentHands.push(newCard);
-            //         counter++;
-            //     }
-            // }
         }
         return currentHands;
     }
@@ -67,44 +48,30 @@ class Dealer {
     /**
      * 
      * @param {number[]} currentHands 
-     * @param {number[]} id 
+     * @param {number[]} ids 
      */
 
-    switch(currentHands, id) {
+    switch(currentHands, ids) {
         var newCard;
         var counter = 0;
 
-        while (counter < id.length) {
+        while (counter < ids.length) {
             newCard = Math.floor(((Math.random() * 54))); //0-53
 
-            if (currentHands.includes(newCard) || discardReg.includes(newCard)) {
+            if (currentHands.includes(newCard) || discard.includes(newCard)) {
                 continue;
             } else {
-                discardReg.push(currentHands[id[counter] - 1]);
-                currentHands[id[counter] - 1] = newCard;
+                discard.push(currentHands[ids[counter] - 1]);
+                currentHands[ids[counter] - 1] = newCard;
                 counter++;
             }
         }
         return currentHands;
     }
 
-    shuffle(type) {
-        switch (type) {
-            case 'reg':
-                if (discardReg.length > 44) {
-                    console.log('shuffling regular deck')
-                    discardReg = [];
-                }
-                break;
-            case 'double':
-                if (discardDouble.length > 44) {
-                    console.log('shuffling double game deck')
-                    discardDouble = [];
-                }
-                break;
-            default:
-                console.log("can't find the value")
-                break;
+    shuffle() {
+        if (discard.length > 43) {
+            discard = [];
         }
     }
 }

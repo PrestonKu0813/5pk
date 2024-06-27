@@ -7,7 +7,7 @@ class Pricing {
      * 判斷是否是同花
      * @returns {boolean}
      */
-    sameKind() {
+    static sameKind() {
         var size;
         size = new Set(suits).size;
         if (suits.includes(4)) { // 有鬼牌
@@ -16,7 +16,7 @@ class Pricing {
         return size == 1;
     }
 
-    hasNumber() {
+    static hasNumber() {
         var counter = 0;
         for (let key in hashTable) {
             if (hashTable[key].length > 0) {
@@ -29,7 +29,7 @@ class Pricing {
      * 計算重複最多次的數字重複的次數
      * @returns {number}
      */
-    maxRepeat() {
+    static maxRepeat() {
         var max = 0;
 
         for (let key in hashTable) {
@@ -48,7 +48,7 @@ class Pricing {
      * @param {number[]} arr2 
      * @returns {number} 計算有幾個數字相同
      */
-    isIncluded(arr1, arr2) {
+    static isIncluded(arr1, arr2) {
         const filteredArray = arr1.filter(value => arr2.includes(value)); //intersection
         return Object.keys(filteredArray).length
     }
@@ -56,7 +56,7 @@ class Pricing {
      * 判斷排組是否是順子
      * @returns {boolean}
      */
-    isFlush() {
+    static isFlush() {
         var counter = 0; // 計算共有幾張鬼牌
         var temp = numbers;
         temp.sort(function (a, b) { return a - b });
@@ -83,7 +83,7 @@ class Pricing {
      * @param {boolean} joker 
      * @returns 
      */
-    isJUp(joker) {
+    static isJUp(joker) {
         var max = 0;
         var index = 0;
 
@@ -113,7 +113,7 @@ class Pricing {
      * @param {number[]} currentHands 
      * @returns 
      */
-    prices(currentHands) {
+    static prices(currentHands) {
         var bettingOdds = 0;
         var number;
         var jokerNum = 0;
@@ -143,7 +143,7 @@ class Pricing {
         } else if ((this.hasNumber() == 2 && this.maxRepeat() == 3) ||
             (this.hasNumber() == 3 && this.maxRepeat() == 2 && jokerNum > 0)) { //葫蘆
             bettingOdds = 10;
-        } else if (this.sameKind(0)) { //同花
+        } else if (this.sameKind()) { //同花
             bettingOdds = 7;
         } else if (this.isFlush()) { //順子
             bettingOdds = 5;
