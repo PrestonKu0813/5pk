@@ -2,7 +2,7 @@ const RegularGame = require('./regularGame.js');
 const Transition = require('./transition.js');
 const DoubleGame = require('./doubleGame.js');
 const Pricing = require('./pricing.js')
-const ENUM_DOUBLE = require('./enum.js')
+const Enum = require('./enum.js')
 
 var betAmount = 0;
 var bettingOdds = 0;
@@ -26,11 +26,11 @@ while (true) {
         if (Transition.doubleGame()) {
             while (true) {
                 result = doubleGame.doubleGame();
-                if (result == ENUM_DOUBLE.WIN) {
+                if (result == Enum.doubleGame.WIN) {
                     console.log("you won!")
                     totalPoints += (2 * points);
                     break;
-                } else if (result == ENUM_DOUBLE.DRAW) {
+                } else if (result == Enum.doubleGameGame.DRAW) {
                     console.log("it's a draw... starting a new double game...")
                     continue;
                 } else {
