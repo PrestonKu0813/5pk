@@ -1,20 +1,20 @@
-const RegularGame = require('./regularGame.js');
-const Transition = require('./transition.js');
-const DoubleGame = require('./doubleGame.js');
-const Pricing = require('./pricing.js')
-const Enum = require('./enum.js')
+const RegularGame = require('./lib/regularGame.js');
+const Transition = require('./lib/transition.js');
+const DoubleGame = require('./lib/doubleGame.js');
+const Pricing = require('./lib/pricing.js');
+const Enum = require('./lib/enum.js');
 
-var betAmount = 0;
-var bettingOdds = 0;
-var points = 0;
-var totalPoints = 0;
-var currentHands = [];
+let betAmount = 0;
+let bettingOdds = 0;
+let points = 0;
+let totalPoints = 0;
+let currentHands = [];
 
 const regularGame = new RegularGame();
 const doubleGame = new DoubleGame();
 
 while (true) {
-    var result;
+    let result;
     betAmount = Transition.wager();
     currentHands = regularGame.wager();
     currentHands = regularGame.switchCards(currentHands);
@@ -26,19 +26,20 @@ while (true) {
         if (Transition.doubleGame()) {
             while (true) {
                 result = doubleGame.doubleGame();
-                if (result == Enum.doubleGame.WIN) {
-                    console.log("you won!")
+                if (result === Enum.doubleGame.WIN) {
+                    console.log('you won!');
                     totalPoints += (2 * points);
                     break;
-                } else if (result == Enum.doubleGameGame.DRAW) {
-                    console.log("it's a draw... starting a new double game...")
+                } else if (result === Enum.doubleGameGame.DRAW) {
+                    console.log('it\'s a draw... starting a new double game...');
                     continue;
                 } else {
-                    console.log("you lost...");
+                    console.log('you lost...');
                     break;
                 }
             }
-        } else {
+        }
+        else {
             totalPoints += points;
         }
     }
@@ -48,8 +49,9 @@ while (true) {
         bettingOdds = 0;
         points = 0;
         continue;
-    } else {
-        console.log("you won a total of: " + totalPoints + " points")
+    }
+    else {
+        console.log(`you won a total of: ${totalPoints} points`);
         break;
     }
 }

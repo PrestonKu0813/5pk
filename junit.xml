@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="1" failures="1" time="6.722">
+  <testsuite name="sum module" errors="0" failures="1" skipped="0" timestamp="2024-07-01T03:50:02" time="1.164" tests="1">
+    <testcase classname="sum module adds 1 + 2 to equal 3" name="sum module adds 1 + 2 to equal 3" time="0.006">
+      <failure>Error: expect(received).toBe(expected) // Object.is equality
+
+- Expected  - 1
++ Received  + 1
+
+  Array [
+-   &quot;Jokerrr&quot;,
++   &quot;Joker&quot;,
+  ]
+    at Object.&lt;anonymous&gt; (C:\Users\preston.ku\Downloads\5pk\test\dealer.test.js:7:38)
+    at Object.asyncJestTest (C:\Users\preston.ku\Downloads\5pk\node_modules\jest-jasmine2\build\jasmineAsyncInstall.js:100:37)
+    at C:\Users\preston.ku\Downloads\5pk\node_modules\jest-jasmine2\build\queueRunner.js:45:12
+    at new Promise (&lt;anonymous&gt;)
+    at mapper (C:\Users\preston.ku\Downloads\5pk\node_modules\jest-jasmine2\build\queueRunner.js:28:19)
+    at C:\Users\preston.ku\Downloads\5pk\node_modules\jest-jasmine2\build\queueRunner.js:75:41
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
