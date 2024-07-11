@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/35</span>
+                <span class='fraction'>0/36</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/34</span>
+                <span class='fraction'>0/35</span>
             </div>
         
             
@@ -161,12 +161,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -198,6 +193,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,6 +215,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -225,8 +223,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Dealer = <span class="cstat-no" title="statement not covered" >require('./dealer.js');</span>
-const Transition = <span class="cstat-no" title="statement not covered" >require('./transition.js')</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const Dealer = <span class="cstat-no" title="statement not covered" >require('./dealer.js');</span>
+const Transition = <span class="cstat-no" title="statement not covered" >require('./transition.js');</span>
 const Enum = <span class="cstat-no" title="statement not covered" >require('./enum.js');</span>
 &nbsp;
 class DoubleGame {
@@ -241,35 +241,30 @@ class DoubleGame {
      */
 &nbsp;
 <span class="fstat-no" title="function not covered" >    do</span>ubleGame() {
-        var cards;
-        var index;
-        var revealArray = <span class="cstat-no" title="statement not covered" >["?", "?", "?", "?"];</span>
-        var temp;
-        var dealerHands;
-        var playerHands;
-        var response;
-        var win;
+        let index;
+        const revealArray = <span class="cstat-no" title="statement not covered" >['?', '?', '?', '?'];</span>
+        let dealerHands;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        this.dealer.shuffle();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        cards = this.dealer.deal();</span>
+        const cards = <span class="cstat-no" title="statement not covered" >this.dealer.deal();</span>
 <span class="cstat-no" title="statement not covered" >        for (let i = <span class="cstat-no" title="statement not covered" >0;</span> i &lt; cards.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >            if (!(cards[i] == 52 || cards[i] == 53)) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!(cards[i] === 52 || cards[i] === 53)) {</span>
 <span class="cstat-no" title="statement not covered" >                dealerHands = cards[i];</span>
 <span class="cstat-no" title="statement not covered" >                index = i;</span>
 <span class="cstat-no" title="statement not covered" >                break;</span>
             }
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        temp = cards[0];</span>
+        const temp = <span class="cstat-no" title="statement not covered" >cards[0];</span>
 <span class="cstat-no" title="statement not covered" >        cards[0] = cards[index];</span>
 <span class="cstat-no" title="statement not covered" >        cards[index] = temp;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        console.log("the dealer has " + this.dealer.convert([dealerHands]));</span>
-<span class="cstat-no" title="statement not covered" >        console.log(["?", "?", "?", "?"]);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(`the dealer has ${this.dealer.convert([dealerHands])}`);</span>
+<span class="cstat-no" title="statement not covered" >        console.log(['?', '?', '?', '?']);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        response = Transition.doubleGameCheck()</span>
-<span class="cstat-no" title="statement not covered" >        playerHands = cards[response];</span>
+        const response = <span class="cstat-no" title="statement not covered" >Transition.doubleGameCheck();</span>
+        const playerHands = <span class="cstat-no" title="statement not covered" >cards[response];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        revealArray[response - 1] = this.dealer.convert([playerHands])[0];</span>
 <span class="cstat-no" title="statement not covered" >        console.log(revealArray);</span>
@@ -277,43 +272,48 @@ class DoubleGame {
 <span class="cstat-no" title="statement not covered" >        cards.splice(0, 1);</span>
 <span class="cstat-no" title="statement not covered" >        console.log(this.dealer.convert(cards));</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return win = this.reveal(dealerHands, playerHands);</span>
+        const win = <span class="cstat-no" title="statement not covered" >this.reveal(dealerHands, playerHands);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return win;</span>
 &nbsp;
     }
 &nbsp;
     /**
-     * 判斷莊家還是玩家贏 
+     * 判斷莊家還是玩家贏
      * determine whether the dealer or the player wins
-     * @param {*} dealerHands 
-     * @param {*} playerHands 
+     * @param {*} dealerHands
+     * @param {*} playerHands
      * @returns {Enum}
      */
 <span class="fstat-no" title="function not covered" >    re</span>veal(dealerHands, playerHands) {
-        var dealerNumber = <span class="cstat-no" title="statement not covered" >dealerHands % 13;</span>
-        var playerNumber = <span class="cstat-no" title="statement not covered" >playerHands % 13;</span>
+        const dealerNumber = <span class="cstat-no" title="statement not covered" >dealerHands % 13;</span>
+        const playerNumber = <span class="cstat-no" title="statement not covered" >playerHands % 13;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (playerHands == 52 || playerHands == 53) {</span>
+<span class="cstat-no" title="statement not covered" >        if (playerHands === 52 || playerHands === 53) {</span>
 <span class="cstat-no" title="statement not covered" >            return Enum.doubleGame.WIN;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (playerNumber == dealerNumber) {</span>
+        } <span class="cstat-no" title="statement not covered" >if (playerNumber === dealerNumber) {</span>
 <span class="cstat-no" title="statement not covered" >            return Enum.doubleGame.DRAW;</span>
-        } else <span class="cstat-no" title="statement not covered" >if (playerNumber &gt; dealerNumber) {</span>
+        } <span class="cstat-no" title="statement not covered" >if (playerNumber &gt; dealerNumber) {</span>
 <span class="cstat-no" title="statement not covered" >            return Enum.doubleGame.WIN;</span>
-        } else {
-<span class="cstat-no" title="statement not covered" >            return Enum.doubleGame.LOSE;</span>
         }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return Enum.doubleGame.LOSE;</span>
+&nbsp;
     }
+&nbsp;
 }
 // const doubleGame = new DoubleGame();
 // doubleGame.doubleGame();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = DoubleGame;</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >module.exports = DoubleGame;</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-01T03:50:09.122Z
+                at 2024-07-04T03:34:29.769Z
             </div>
         <script src="prettify.js"></script>
         <script>

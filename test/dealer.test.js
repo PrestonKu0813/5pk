@@ -18,8 +18,8 @@ describe('convert()', () => {
     test('K', () => {
         expect(dealer.convert([12])).toStrictEqual(['\u2660K']);
     });
-    test('suites', () => {
-        expect(dealer.convert([13])).toStrictEqual(['\u2665A']);
+    test('other numbers', () => {
+        expect(dealer.convert([9])).toStrictEqual(['\u266010']);
     });
 });
 
@@ -47,11 +47,32 @@ describe('deal()', () => {
 });
 
 describe('switchCards()', () => {
+    test('card is in discard[]', () => {
+        dealer.discard = [0];
+        jest.spyOn(Math, 'random').mockReturnValueOnce(0);
+        const switchHands = dealer.switchCards([3, 4, 5, 6, 7], [1]);
+        expect(switchHands.includes(0)).toBe(false);
+        dealer.discard = [];
+    });
     test('cards different than original hands', () => {
         const originalHands = dealer.switchCards([0, 1, 2, 3, 4], [2, 4]);
-        const newNum1 = originalHands[1];
-        const newNum2 = originalHands[3];
-        expect(!(originalHands.includes(newNum1) || originalHands.includes(newNum2))).toBe(true);
+        expect(originalHands.includes(1)).toBe(false);
+        expect(originalHands.includes(3)).toBe(false);
+    });
+});
+
+describe('shuffle()', () => {
+    test('shuffle at the correct condition', () => {
+        dealer.discard.length = 44;
+        dealer.shuffle();
+        expect(dealer.discard.length).toBe(0);
+        dealer.discard = [];
+    });
+    test('doesn\'t shuffle', () => {
+        dealer.discard.length = 43;
+        dealer.shuffle();
+        expect(dealer.discard.length).toBe(43);
+        dealer.discard = [];
     });
 });
 
